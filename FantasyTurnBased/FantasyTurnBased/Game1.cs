@@ -12,9 +12,27 @@ namespace FantasyTurnBased
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        GridDrawManager myGridManager;
+        bool waitForMouseUp = false;
+
+        private Texture2D background;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            //Setting window size
+            graphics.PreferredBackBufferWidth = 960;
+            graphics.PreferredBackBufferHeight = 960;
+            graphics.ApplyChanges();
+
+            //Making Mouse Visible
+            this.IsMouseVisible = true;
+
+            //Setting up the Grid Drawer
+            
+
+
             Content.RootDirectory = "Content";
         }
 
@@ -39,8 +57,13 @@ namespace FantasyTurnBased
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            myGridManager = new GridDrawManager(spriteBatch);
+
+            background = Content.Load<Texture2D>("Graphics\\Prototype\\Background.png");
 
             // TODO: use this.Content to load your game content here
+            myGridManager.LoadContent(Content);
+            
         }
 
         /// <summary>
@@ -63,6 +86,16 @@ namespace FantasyTurnBased
                 Exit();
 
             // TODO: Add your update logic here
+            MouseState currState = Mouse.GetState();
+            if(currState.LeftButton == ButtonState.Pressed && !waitForMouseUp)
+            {
+                myGridManager.ToggleBlock(UtilityFunctions.mousePositionToGridArray(new Point(currState.X, currState.Y)));
+                waitForMouseUp = true;
+            }
+            else if(currState.LeftButton == ButtonState.Released)
+            {
+                waitForMouseUp = false;
+            }
 
             base.Update(gameTime);
         }
@@ -76,6 +109,10 @@ namespace FantasyTurnBased
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(background, new Rectangle(0, 0, 960, 960), Color.White);
+            myGridManager.DrawGrid();
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
