@@ -15,7 +15,6 @@ namespace FantasyTurnBased
 
         int[,] backgroundLayer;
         int[,] objectLayer;
-        int[,] actorLayer;
 
         //Temporary textures
         Texture2D solidBlack;
@@ -25,13 +24,7 @@ namespace FantasyTurnBased
             mySpiteBatchRef = inRef;
 
             backgroundLayer = new int[15, 15];
-            for(int i = 0; i < 15; i++)
-            {
-                for(int j = 0; j < 15; j++)
-                {
-                    backgroundLayer[i, j] = 0;
-                }
-            }
+
         }
 
         public void LoadContent(ContentManager inManager)
@@ -40,8 +33,7 @@ namespace FantasyTurnBased
         }
 
         public void DrawGrid()
-        {
-            backgroundLayer[4, 7] = 1;
+        { 
             for (int i = 0; i < 15; i++)
             {
                 for (int j = 0; j < 15; j++)

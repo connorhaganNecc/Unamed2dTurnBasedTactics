@@ -38,9 +38,12 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Code\Prototype\Class1.cs" />
-    <Compile Include="Code\Prototype\GridDrawManager.cs" />
-    <Compile Include="Code\Prototype\UtilityFunctions.cs" />
+    <Compile Include="Code\Drawing\GridDrawManager.cs" />
+    <Compile Include="Code\GameplayManager.cs" />
+    <Compile Include="Code\Unit\UnitManager.cs" />
+    <Compile Include="Code\Unit\UnitStats.cs" />
+    <Compile Include="Code\Unit\UnitTile.cs" />
+    <Compile Include="Code\Utility\UtilityFunctions.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Code\Player\" />
+    <Folder Include="Code\Prototype\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

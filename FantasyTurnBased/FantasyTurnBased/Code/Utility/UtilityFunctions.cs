@@ -17,6 +17,11 @@ namespace FantasyTurnBased
             inPoint.Y -= 32;
             return new Pair<int>(((int)Math.Round(inPoint.X / 64d) * 64) / 64, ((int)Math.Round((inPoint.Y / 64d)) * 64) / 64);
         }
+
+        public static int GridDistance(Pair<int> pairOne, Pair<int> pairTwo)
+        {
+            return Math.Abs(pairOne.x - pairTwo.x) + Math.Abs(pairOne.y - pairTwo.y);
+        }
     }
 
     class Pair<t>
