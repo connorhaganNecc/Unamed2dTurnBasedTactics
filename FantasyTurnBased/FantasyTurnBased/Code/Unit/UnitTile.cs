@@ -39,5 +39,10 @@ namespace FantasyTurnBased
             inBatch.Draw(myGraphics, new Rectangle(new Point(coordinates.x * 64, coordinates.y * 64), new Point(64, 64)), Color.White);
         }
 
+
+        public Rectangle myPosition()
+        {
+            return new Rectangle(new Point(coordinates.x * 64, coordinates.y * 64), new Point(64, 64));
+        }
     }
 }

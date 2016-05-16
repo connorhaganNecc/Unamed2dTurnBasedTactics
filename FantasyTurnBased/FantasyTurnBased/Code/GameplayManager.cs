@@ -15,6 +15,7 @@ namespace FantasyTurnBased
         GridDrawManager myGridManager;
         UnitManager myUnitManager;
         SpriteBatch mySpriteRef;
+        Texture2D selected;
         bool waitForMouseUp = false;
 
         UnitTile activeUnit;
@@ -48,6 +49,9 @@ namespace FantasyTurnBased
             temp3.myStats.unitCurrSpeed = 3;
             myUnitManager.battleUnits.Add(temp3);
 
+            selected = inManager.Load<Texture2D>("Graphics\\Prototype\\Selected.png");
+
+
             myUnitManager.LoadContent(inManager);
             mySpriteRef = inBatch;
         }
@@ -56,6 +60,12 @@ namespace FantasyTurnBased
         {
             myGridManager.DrawGrid();
             myUnitManager.Draw(mySpriteRef);
+
+            if(activeUnit!= null)
+            {
+                mySpriteRef.Draw(selected, activeUnit.myPosition(), Color.White);
+                myGridManager.DrawWalkable(activeUnit.coordinates, activeUnit.myStats.unitCurrSpeed);
+            }
         }
         
         public void Update()
@@ -67,6 +77,7 @@ namespace FantasyTurnBased
                 Pair<int> mousePosition = UtilityFunctions.mousePositionToGridArray(new Point(currState.X, currState.Y));
                 if(activeUnit!= null)
                 {
+
                     if(UtilityFunctions.GridDistance(mousePosition, activeUnit.coordinates) <= activeUnit.myStats.unitCurrSpeed)
                     {
                         activeUnit.coordinates = mousePosition;

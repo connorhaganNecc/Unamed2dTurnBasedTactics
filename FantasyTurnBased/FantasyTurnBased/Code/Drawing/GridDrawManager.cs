@@ -18,6 +18,8 @@ namespace FantasyTurnBased
 
         //Temporary textures
         Texture2D solidBlack;
+        Texture2D walkable;
+        Texture2D gridSpace;
 
         public GridDrawManager(SpriteBatch inRef)
         {
@@ -30,6 +32,8 @@ namespace FantasyTurnBased
         public void LoadContent(ContentManager inManager)
         {
             solidBlack = inManager.Load<Texture2D>("Graphics\\Prototype\\SolidBlack.png");
+            walkable = inManager.Load<Texture2D>("Graphics\\Prototype\\Walkable.png");
+            gridSpace = inManager.Load<Texture2D>("Graphics\\Prototype\\GridSpace.png");
         }
 
         public void DrawGrid()
@@ -38,6 +42,7 @@ namespace FantasyTurnBased
             {
                 for (int j = 0; j < 15; j++)
                 {
+                    mySpiteBatchRef.Draw(gridSpace, new Rectangle(new Point(i * 64, j * 64), new Point(64, 64)), Color.White);
                     if(backgroundLayer[i, j] != 0)
                     {
                         mySpiteBatchRef.Draw(solidBlack, new Rectangle(new Point(i * 64, j * 64), new Point(64, 64)), Color.White);
@@ -61,6 +66,24 @@ namespace FantasyTurnBased
                 }
             }
             
+        }
+
+        public void DrawWalkable(Pair<int> Position, int walkDistance)
+        {
+            for(int i = Position.y - walkDistance; i <= Position.y + walkDistance; i++)
+            {
+                for(int j = Position.x - walkDistance; j <= Position.x + walkDistance; j++)
+                {
+                    Pair<int> tempDistance = new Pair<int>(j, i);
+                    if(!(Position.x == tempDistance.x && Position.y == tempDistance.y)&&  UtilityFunctions.GridDistance(Position, tempDistance) <= walkDistance)
+                    {
+                        if(tempDistance.x >= 0 && tempDistance.x < 15 && tempDistance.y >= 0 && tempDistance.y < 15)
+                        {
+                            mySpiteBatchRef.Draw(walkable, new Rectangle(new Point(tempDistance.x * 64, tempDistance.y * 64), new Point(64, 64)), Color.White);
+                        }
+                    }
+                }
+            }
         }
 
 

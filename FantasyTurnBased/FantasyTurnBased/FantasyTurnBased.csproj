@@ -40,6 +40,9 @@
   <ItemGroup>
     <Compile Include="Code\Drawing\GridDrawManager.cs" />
     <Compile Include="Code\GameplayManager.cs" />
+    <Compile Include="Code\Level\LevelTile.cs" />
+    <Compile Include="Code\Level\TileStats.cs" />
+    <Compile Include="Code\Template\ItemTemplate.cs" />
     <Compile Include="Code\Unit\UnitManager.cs" />
     <Compile Include="Code\Unit\UnitStats.cs" />
     <Compile Include="Code\Unit\UnitTile.cs" />
@@ -59,7 +62,16 @@
     <Content Include="Content\Graphics\Prototype\Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Graphics\Prototype\GridSpace.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\Prototype\Selected.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Graphics\Prototype\SolidBlack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\Prototype\Walkable.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
